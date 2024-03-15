@@ -4,6 +4,7 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Requests\StudentRequest;
 use App\Http\Controllers\StudentController;
+use App\Http\Controllers\StudentReportControllers;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,6 +16,31 @@ use App\Http\Controllers\StudentController;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+
+
+
+
+
+// Route::get('/docentes', function () {
+//     return view('docentes');
+// })->name("profesores");
+
+
+// Route::get('/docentes', function () {
+//     return view('docentes');
+// })->name("profesores");
+
+// Route::get('/docentes/{codigo}', function ($codigo) {
+//     return view('docentes') -> with("clave", $codigo);
+// });
+
+// Route::get('/estudiantes', function () {
+//     return view('estudiantes');
+// })->name("alumnos");
+
+// Route::get('/dash', function () {
+//     return view('dash');
+//     });
 
 Route::get('/', function () {
     return view('welcome');
@@ -33,47 +59,27 @@ Route::middleware('auth')->group(function () {
 require __DIR__.'/auth.php';
 
 
-
-Route::get('/docentes', function () {
-    return view('docentes');
-})->name("profesores");
-
-
-Route::get('/docentes/{codigo}', function ($codigo) {
-    return view('docentes') -> with("clave", $codigo);
-});
-
-// Route::get('/estudiantes', function () {
-//     return view('estudiantes');
-// })->name("alumnos");
-
-// Route::get('/dash', function () {
-//     return view('dash');
-//     });
-
-
 Route::get('/plantilla', function () {
     return view('plantilla');
-});
+})->middleware('auth');
 
 
-Route::get('/form', function () {
-    return view('form');
+Route::get('/formulario', function () {
+    return view('formulario');
 })->middleware('auth');
     
-
-
 
 
 Route::resource('estudiantes',StudentController::class)->middleware('auth');
 
 
 
-Route::get('/noLog', function () {
-    return view('noLog');
-});
+Route::get('/no', function () {
+    return view('no');
+})->name("no");
 
 
-Route::get('/docentes', function () {
-    return view('docentes');
-})->name("profesores");
+Route::get('reportes/{estudiantes}', [StudentReportControllers::class, 'show_cardex'])->name('reportes.imprimir');
+
+
+

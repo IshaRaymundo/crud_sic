@@ -24,10 +24,12 @@ class StudentRequest extends FormRequest
         return [
             //
 
+            'name_student' => 'required|string|max:255',
+            'lastname_student' => 'required|string|max:255',
+            'id_student' => 'required|numeric|unique:students,id_student',
+            'birthday' => 'required|date',
+            'comments' => 'nullable|string',
 
-            'name_student' => 'bail|required|alpha',
-            'email_student' => 'bail|required|email',
-            'password_student' => 'bail|required|between:5,10',
         ];
     }
 }
