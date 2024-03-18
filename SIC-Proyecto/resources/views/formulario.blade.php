@@ -4,136 +4,54 @@
     formulario
 @endsection
 
-
 @section('contenido')
-<style>
-    
-    body {
-    font-family: 'Arial', sans-serif;
-    background-position: center; /* Centra la imagen en el cuerpo */
-    margin: 0;
-    padding: 0;
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
-}
-
-
-        .sub {
-        text-align: center; /* Centra horizontalmente el contenido del div */
-        }
-
-    .sub h3 {
-    font-size: 20px; /* Establece el tamaño de la letra */
-    font-weight: bold;
-    color: #4e93ee;
-    }
-
-        main {
-            flex: 1;
-            padding: 20px;
-        }
-
-        /* Estilo para el contenedor del formulario */
-    .container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 62vh;
-    }
-
-    /* Estilo para el formulario */
-    form {
-    width: 250px;
-    padding: 20px;
-    padding_top: 50px;
-    border-radius: 30px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    }
-
-    /* Estilo para los inputs */
-    input[type="text"],
-    input[type="number"],
-    input[type="date"],
-    input[type="password"] {
-    width: 100%;
-    padding: 10px;
-    margin: 8px 0;
-    border: 1px solid #d2c2c2;
-    border-radius: 5px;
-    box-sizing: border-box;
-    }
-
-    /* Estilo para el botón */
-    button[type="submit"] {
-    background-color:  #4e93ee;
-    color: white;
-    padding: 14px 20px;
-    margin: 8px 0;
-    border: none;
-    justify-content: center;
-    align-items: center;
-
-    border-radius: 4px;
-    cursor: pointer;
-    width: 250px;
-    font-size: 14px; /* Establece el tamaño de la letra */
-    font-weight: bold;
-    }
-
-    button:hover{
-        background-color: #0b2a81;
-        color: #ccc
-    }
-
-    /* Estilo para los mensajes de error */
-    div[style="color:red"] {
-    margin-bottom: 10px;
-    }   
-
-
-        .icon {
-            margin-bottom: 10px;
-            font-size: 48px;
-            color: #0056b3; /* Azul oscuro */
-        }
-    </style>
-    <div>
-        <div>
-
+    <div class="flex justify-center items-center min-h-screen bg-gray-100">
+        <div class="bg-white p-8 rounded-lg shadow-md w-full sm:w-96">
+            <div class="text-center mb-4">
+            <h1 class="text-2xl font-bold mb-4">Agregar Estudiante</h1>
+            </div>
+            <form action="{{ url('estudiantes') }}" method="post" class="space-y-4">
+                @csrf
+                <div>
+                    <input type="text" name="name_student" placeholder="Nombre"
+                           class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:border-blue-400">
+                    @error('name_student')
+                        <p class="text-red-500 mt-1">{{ $message }}</p>
+                    @enderror
+                </div>
+                <div>
+                    <input type="text" name="lastname_student" placeholder="Apellido"
+                           class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:border-blue-400">
+                    @error('lastname_student')
+                        <p class="text-red-500 mt-1">{{ $message }}</p>
+                    @enderror
+                </div>
+                <div>
+                    <input type="number" name="id_student" placeholder="Matrícula"
+                           class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:border-blue-400">
+                    @error('id_student')
+                        <p class="text-red-500 mt-1">{{ $message }}</p>
+                    @enderror
+                </div>
+                <div>
+                    <input type="date" name="birthday" placeholder="Fecha de nacimiento"
+                           class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:border-blue-400">
+                    @error('birthday')
+                        <p class="text-red-500 mt-1">{{ $message }}</p>
+                    @enderror
+                </div>
+                <div>
+                    <input type="text" name="comments" placeholder="Comentarios"
+                           class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:border-blue-400">
+                    @error('comments')
+                        <p class="text-red-500 mt-1">{{ $message }}</p>
+                    @enderror
+                </div>
+                <button type="submit"
+                        class="mx-auto bg-indigo-950 text-white py-2 px-4 rounded-md hover:bg-indigo-900 transition duration-300 ease-in-out block">
+                    Agregar
+                </button>
+            </form>
         </div>
     </div>
-    <br>
-    <a href="estudiantes"><button type="submit">Regresar</button></a>
-    <br>
-    <div class="container">
-        <form action="{{url('estudiantes')}}" method="post" class="mt-10">
-            @csrf
-            <div class="sub">
-                <h3>INSERTAR</h3>
-            </div>
-            <input type="text" name="name_student" placeholder="Nombre"/>
-            @error('name_student')
-                <div>{{$message}}</div>
-            @enderror
-            <input type="text" name="lastname_student" placeholder="Apellido"/>
-            @error('lastname_student')
-                <div>{{$message}}</div>
-            @enderror
-            <input type="number" name="id_student" placeholder="Matricula"/>
-            @error('id_student')
-                <div>{{$message}}</div>
-            @enderror
-            <input type="date" name="birthday" placeholder="Cumpleaños"/>
-            @error('birthday')
-                <div>{{$message}}</div>
-            @enderror
-            <input type="text" name="comments" placeholder="Comentarios"/>
-            @error('comments')
-                <div>{{$message}}</div>
-            @enderror
-            <button type="submit">Enviar</button>
-        </form>
-    </div>
-    @endsection
-
+@endsection

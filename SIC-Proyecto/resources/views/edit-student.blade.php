@@ -1,94 +1,66 @@
-
-
 @extends('plantilla')
 
 @section('titulo')
-    EDITAR
+    Editar
 @endsection
 
-
 @section('contenido')
+    <div class="flex justify-center items-center h-screen bg-zinc-100">
+        <div class="bg-white p-8 rounded-lg shadow-md w-full sm:w-2/3 max-w-md">
+            <h1 class="text-2xl font-bold mb-4">Editar Estudiante</h1>
 
+            <form action="{{ route('estudiantes.update', $student->id) }}" method="POST" class="space-y-4">
+                @csrf
+                @method("put")
 
+                <div>
+                    <label for="name_student" class="block font-semibold">Nombre:</label>
+                    <input type="text" id="name_student" name="name_student" value="{{ $student->name_student }}"
+                           class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:border-blue-400">
+                    @error('name_student')
+                        <p class="text-red-500 mt-1">{{ $message }}</p>
+                    @enderror
+                </div>
 
-<style>
-    .card {
-        height: 200px;
-        width: 350px;
-        margin: 0 auto;
-        background-color: #f9f9f9;
-        border-radius: 10px;
-        padding: 20px;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    }
+                <div>
+                    <label for="lastname_student" class="block font-semibold">Apellido:</label>
+                    <input type="text" id="lastname_student" name="lastname_student"
+                           value="{{ $student->lastname_student }}"
+                           class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:border-blue-400">
+                    @error('lastname_student')
+                        <p class="text-red-500 mt-1">{{ $message }}</p>
+                    @enderror
+                </div>
 
-    form {
-        background-color: #fff;
-        padding: 20px;
-        border-radius: 5px;
-        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    }
+                <div>
+                    <label for="id_student" class="block font-semibold">Matrícula:</label>
+                    <input type="text" id="id_student" name="id_student" value="{{ $student->id_student }}"
+                           class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:border-blue-400">
+                    @error('id_student')
+                        <p class="text-red-500 mt-1">{{ $message }}</p>
+                    @enderror
+                </div>
 
-    label {
-        font-weight: bold;
-        margin-bottom: 5px;
-        display: block;
-    }
+                <div>
+                    <label for="birthday" class="block font-semibold">Fecha de nacimiento:</label>
+                    <input type="text" id="birthday" name="birthday" value="{{ $student->birthday }}"
+                           class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:border-blue-400">
+                    @error('birthday')
+                        <p class="text-red-500 mt-1">{{ $message }}</p>
+                    @enderror
+                </div>
 
-    input[type="text"] {
-        width: 100%;
-        padding: 8px;
-        margin-bottom: 10px;
-        border: 1px solid #ccc;
-        border-radius: 3px;
-        box-sizing: border-box;
-    }
-
-    .error-message {
-        color: red;
-        margin-top: 5px;
-    }
-
-    button[type="submit"] {
-        background-color: #007bff;
-        color: #fff;
-        padding: 10px 20px;
-        border: none;
-        border-radius: 3px;
-        cursor: pointer;
-    }
-
-    button[type="submit"]:hover {
-        background-color: #0056b3;
-    }
-</style>
-<body>
-
-    <a href="../../estudiantes"><button type="submit">Regresar</button></a>
-
-    <div class="card">
-
-
-<form action="{{ route('estudiantes.update', $student->id) }}" method="POST">
-    @csrf
-    @method("put")
-
-    <label for="name_student_input">Nombre:</label>
-<input type="text" id="name_student_input" name="name_student" value="{{ $student->name_student }}">
-
-    @error('name_student')
-        <p class="error-message">{{ $message }}</p>
-    @enderror
-
-    <label for="lastname_student">Apellido:</label>
-    <input type="text" name="lastname_student" value="{{ $student->lastname_student }}">
-    @error('lastname_student')
-        <p class="error-message">{{ $message }}</p>
-    @enderror
-
-    <button type="submit">Editar</button>
-</form>
-
+                <div>
+                    <label for="comments" class="block font-semibold">Comentarios:</label>
+                    <input type="text" id="comments" name="comments" value="{{ $student->comments }}"
+                           class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:border-blue-400">
+                    @error('comments')
+                        <p class="text-red-500 mt-1">{{ $message }}</p>
+                    @enderror
+                </div>
+                <div class="flex justify-between">
+            <button type="submit" class="bg-indigo-950 text-white py-2 px-4 rounded-md hover:bg-indigo-900 transition duration-300 ease-in-out">Enviar</button>
+            <a href="../../estudiantes" class="bg-indigo-900 text-white py-2 px-4 rounded-xl hover:bg-indigo-950 transition duration-300 ease-in-out">Regresar</a>
+        </div>
     </div>
-
 @endsection

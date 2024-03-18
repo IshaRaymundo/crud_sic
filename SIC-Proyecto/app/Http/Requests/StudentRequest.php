@@ -26,9 +26,10 @@ class StudentRequest extends FormRequest
 
             'name_student' => 'required|string|max:255',
             'lastname_student' => 'required|string|max:255',
-            'id_student' => 'required|numeric|unique:students,id_student',
+            'id_student' => 'required|numeric',
+            // 'id_student' => 'required|numeric|unique:students,id_student',
             'birthday' => 'required|date',
-            'comments' => 'nullable|string',
+            'comments' => 'required|string',
 
         ];
     }
